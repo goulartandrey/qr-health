@@ -1,4 +1,4 @@
-import { IsInt, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsInt, IsOptional, IsString } from 'class-validator';
 
 export class CreateClinicalInfoDto {
   @IsInt()
@@ -8,20 +8,27 @@ export class CreateClinicalInfoDto {
   bloodType: string;
 
   @IsString()
-  @IsOptional()
-  allergies: string;
+  gender: string;
 
-  @IsString()
+  @IsArray()
+  @IsString({ each: true })
   @IsOptional()
-  surgeries: string;
+  allergies?: string[];
 
-  @IsString()
+  @IsArray()
+  @IsString({ each: true })
   @IsOptional()
-  medicines: string;
+  surgeries?: string[];
 
-  @IsString()
+  @IsArray()
+  @IsString({ each: true })
   @IsOptional()
-  chronicDiseases: string;
+  medicines?: string[];
+
+  @IsArray()
+  @IsString({ each: true })
+  @IsOptional()
+  chronicDiseases?: string[];
 
   @IsString()
   emergencyContact: string;

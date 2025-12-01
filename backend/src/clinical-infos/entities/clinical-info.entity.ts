@@ -17,17 +17,20 @@ export class ClinicalInfo {
   @Column()
   bloodType: string;
 
-  @Column({ nullable: true })
-  allergies: string;
+  @Column()
+  gender: string;
 
-  @Column({ nullable: true })
-  surgeries: string;
+  @Column({ type: 'simple-json', nullable: true })
+  allergies: string[];
 
-  @Column({ nullable: true })
-  medicines: string;
+  @Column({ type: 'simple-json', nullable: true })
+  surgeries: string[];
 
-  @Column({ nullable: true })
-  chronicDiseases: string;
+  @Column({ type: 'simple-json', nullable: true })
+  medicines: string[];
+
+  @Column({ type: 'simple-json', nullable: true })
+  chronicDiseases: string[];
 
   @Column()
   emergencyContact: string;

@@ -27,6 +27,10 @@ export class ClinicalInfoService {
 
     const clinicalInfo = this.clinicalInfoRepository.create({
       ...data,
+      allergies: data.allergies ?? [],
+      surgeries: data.surgeries ?? [],
+      medicines: data.medicines ?? [],
+      chronicDiseases: data.chronicDiseases ?? [],
       user,
     });
 
@@ -37,8 +41,10 @@ export class ClinicalInfoService {
     return await this.clinicalInfoRepository.find({ relations: ['user'] });
   }
 
-  findOne(id: number) {
-    const clinicalInfo = this.clinicalInfoRepository.findOne({ where: { id } });
+  async findOne(id: number) {
+    const clinicalInfo = await this.clinicalInfoRepository.findOne({
+      where: { id },
+    });
     if (!clinicalInfo) {
       throw new NotFoundException('Clinical Info not found');
     }
