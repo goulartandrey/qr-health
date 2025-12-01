@@ -8,7 +8,7 @@ export class CreateUserDto {
   lastName: string;
 
   @IsString()
-  username: string;
+  email: string;
 
   @IsStrongPassword()
   @MinLength(8)

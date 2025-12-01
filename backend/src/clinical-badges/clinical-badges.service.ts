@@ -20,14 +20,9 @@ export class ClinicalBadgesService {
     private readonly clinicalInfoRepository: Repository<ClinicalInfo>,
   ) {}
   async create(payload: CreateClinicalBadgeDto) {
-    const baseUrl = this.configService.get<string>('PUBLIC_URL');
-
     const { userId, clinicalInfoId, publicPassword } = payload;
 
-    const fullUrl = `${baseUrl}/${publicPassword}`;
-
     const user = await this.userRepository.findOne({ where: { id: userId } });
-
     if (!user) {
       throw new Error('User not found');
     }
@@ -35,7 +30,6 @@ export class ClinicalBadgesService {
     const clinicalInfo = await this.clinicalInfoRepository.findOne({
       where: { id: clinicalInfoId },
     });
-
     if (!clinicalInfo) {
       throw new Error('Clinical Info not found');
     }
@@ -43,7 +37,7 @@ export class ClinicalBadgesService {
     const clinicalBadge = this.clinicalBadgeRepository.create({
       user: user,
       clinicalInfo: clinicalInfo,
-      publicPassword: fullUrl,
+      publicPassword: publicPassword,
     });
 
     const newBadge = await this.clinicalBadgeRepository.save(clinicalBadge);
@@ -80,8 +74,23 @@ export class ClinicalBadgesService {
     return userClinicalBadge;
   }
 
-  update(id: number, payload: UpdateClinicalBadgeDto) {
-    return `This action updates a #${id} clinicalBadge`;
+  async update(id: number, payload: UpdateClinicalBadgeDto) {
+    const existingBadge = await this.clinicalBadgeRepository.findOne({
+      where: { id },
+    });
+
+    if (!existingBadge) {
+      throw new NotFoundException(`Clinical Badge with ID ${id} not found`);
+    }
+
+    await this.clinicalBadgeRepository.update(id, {
+      publicPassword: payload.publicPassword,
+    });
+
+    return this.clinicalBadgeRepository.findOne({
+      where: { id },
+      relations: ['user', 'clinicalInfo'],
+    });
   }
 
   remove(id: number) {

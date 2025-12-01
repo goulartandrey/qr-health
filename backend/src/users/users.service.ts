@@ -1,3 +1,4 @@
+import * as bcrypt from 'bcrypt';
 import {
   ConflictException,
   Injectable,
@@ -18,7 +19,11 @@ export class UsersService {
 
   async create(payload: CreateUserDto) {
     try {
-      const newUser = this.userRepository.create(payload);
+      const hashedPassword = await bcrypt.hash(payload.password, 10);
+      const newUser = this.userRepository.create({
+        ...payload,
+        password: hashedPassword,
+      });
       return await this.userRepository.save(newUser);
     } catch (error) {
       if (error.code === 'SQLITE_CONSTRAINT' || error.code === '23505') {
@@ -35,7 +40,20 @@ export class UsersService {
   }
 
   async findOne(id: number) {
-    const user = await this.userRepository.findOne({ where: { id } });
+    const user = await this.userRepository.findOne({
+      where: { id },
+      relations: ['clinicalInfo', 'clinicalBadge'],
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user;
+  }
+
+  async findByEmail(email: string) {
+    const user = await this.userRepository.findOne({ where: { email } });
 
     if (!user) {
       throw new NotFoundException('User not found');

@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClinicalInfoModule } from './clinical-infos/clinical-info.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ClinicalBadgesModule } from './clinical-badges/clinical-badges.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ClinicalBadgesModule } from './clinical-badges/clinical-badges.module';
     UsersModule,
     ClinicalInfoModule,
     ClinicalBadgesModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
