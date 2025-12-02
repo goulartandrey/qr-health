@@ -54,11 +54,21 @@ export class ClinicalBadgesService {
     });
   }
 
-  findOne(id: number) {
-    return this.clinicalBadgeRepository.findOne({
+  async findOne(id: number, password?: string) {
+    const badge = await this.clinicalBadgeRepository.findOne({
       where: { id },
-      relations: ['user', 'clinicalInfo'],
+      relations: ['clinicalInfo', 'user'],
     });
+
+    if (!badge) {
+      throw new NotFoundException('Clinical Badge not found');
+    }
+
+    if (!password || password !== badge.publicPassword) {
+      throw new NotFoundException('Senha pública inválida');
+    }
+
+    return badge.clinicalInfo;
   }
 
   async findOneByUserId(userId: number) {

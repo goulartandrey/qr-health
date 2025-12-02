@@ -221,12 +221,9 @@ export default function ClininfoDashboard() {
     }
   };
 
-  console.log(user);
-
   const hasChanges = () => {
     const isFirstCreation = !user?.clinicalInfo?.id;
 
-    // Caso seja primeiro cadastro: habilita se QUALQUER campo estiver preenchido
     if (isFirstCreation) {
       const someFieldFilled =
         allergiesItems.length > 0 ||
@@ -254,8 +251,6 @@ export default function ClininfoDashboard() {
       arraysEqual(surgeriesItems, originalData.surgeries);
 
     const sameStrings =
-      String(publicPassword || '') ===
-        String(clinicalBadge.publicPassword || '') &&
       String(bloodType || '') === String(originalData.bloodType || '') &&
       String(gender || '') === String(originalData.gender || '') &&
       String(emergencyContact || '').trim() ===

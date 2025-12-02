@@ -17,6 +17,9 @@ export default function UserInformation({
   isEditingPassword,
   setIsEditingPassword,
 }) {
+  const capitalize = (str) =>
+    str?.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+
   return (
     <div className="space-y-6">
       <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-200">
@@ -27,7 +30,7 @@ export default function UserInformation({
             </div>
             <div>
               <h2 className="text-xl font-semibold text-gray-800">
-                {user?.firstName} {user?.lastName}
+                {capitalize(user?.firstName)} {capitalize(user?.lastName)}
               </h2>
             </div>
           </div>

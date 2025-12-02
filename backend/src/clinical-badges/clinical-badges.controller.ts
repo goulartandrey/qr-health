@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  Query,
 } from '@nestjs/common';
 import { ClinicalBadgesService } from './clinical-badges.service';
 import { CreateClinicalBadgeDto } from './dto/create-clinical-badge.dto';
@@ -27,8 +28,11 @@ export class ClinicalBadgesController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.clinicalBadgesService.findOne(id);
+  findOne(
+    @Param('id', ParseIntPipe) id: number,
+    @Query('password') password: string,
+  ) {
+    return this.clinicalBadgesService.findOne(id, password);
   }
 
   @Get('users/:userId')

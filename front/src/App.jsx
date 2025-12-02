@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ClinicalView from './pages/ClinicalView';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Register from './pages/Register';
@@ -26,6 +27,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/clinical/:clinicalBadgeId" element={<ClinicalView />} />
         <Route
           path="/login"
           element={
