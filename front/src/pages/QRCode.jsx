@@ -7,8 +7,6 @@ export default function QRCodePage() {
   const navigate = useNavigate();
   const { clinicalBadgeId, publicPassword, userName } = location.state || {};
 
-  const baseUrl =
-    import.meta.env.VITE_PUBLIC_URL || 'https://seuapp.com.br/clinical';
   // const fullUrl = `${baseUrl}/${publicPassword}`;
   const fullUrl = `${window.location.origin}/clinical/${clinicalBadgeId}`;
 
