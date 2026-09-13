@@ -132,13 +132,3 @@ Este projeto é de código aberto e está disponível sob a licença MIT.
 Desenvolvido por **Andrey Goulart**
 
 - GitHub: [@goulartandrey](https://github.com/goulartandrey)
-
----
-
-## 🤝 9. Contribuições
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
-
----
-
-**⚠️ Importante**: Este é um projeto educacional. Para uso em produção, implemente medidas adicionais de segurança e conformidade com LGPD/HIPAA.
