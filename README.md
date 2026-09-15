@@ -8,7 +8,7 @@ O sistema é composto por:
 
 ---
 
-## 📦 Funcionalidades Principais
+## Funcionalidades Principais
 
 ✔️ Cadastro e login com autenticação JWT  
 ✔️ Dashboard do usuário  
@@ -20,13 +20,13 @@ O sistema é composto por:
 
 ---
 
-## 🚀 Como Rodar o Projeto
+## Como Rodar o Projeto
 
 Este guia é para o avaliador rodar o projeto corretamente em seu ambiente local.
 
 ---
 
-## 🖥️ 1. Clonar os Repositórios
+## 1. Clonar os Repositórios
 
 ### **Frontend**
 ```sh
@@ -51,7 +51,7 @@ O backend estará disponível em: `http://localhost:3000`
 
 ---
 
-## 📂 2. Estrutura do Projeto
+## 2. Estrutura do Projeto
 
 ```
 qr-health/
@@ -79,7 +79,7 @@ qr-health/
 
 ---
 
-## 🧪 4. Testando o Sistema
+## 4. Testando o Sistema
 
 1. **Cadastre um usuário** em `/register`
 2. **Faça login** em `/login`
@@ -111,7 +111,7 @@ qr-health/
 
 ---
 
-## 📱 6. Considerações de Segurança
+## 6. Considerações de Segurança
 
 - Senhas são criptografadas com bcrypt
 - Autenticação via JWT
@@ -121,13 +121,13 @@ qr-health/
 
 ---
 
-## 📄 7. Licença
+## 7. Licença
 
 Este projeto é de código aberto e está disponível sob a licença MIT.
 
 ---
 
-## 👨‍💻 8. Autor
+## 8. Autor
 
 Desenvolvido por **Andrey Goulart**
 
